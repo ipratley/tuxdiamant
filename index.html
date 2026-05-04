@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUX DIAMANT - Luxury Alpine Chalet in Tux, Austria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --charcoal: #2B2B2B;
+            --warm-grey: #8B8680;
+            --alpine-blue: #4A6FA5;
+            --snow: #FFFFFF;
+            --wood: #A0826D;
+            --deep-blue: #1E3A5F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Epilogue', sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--alpine-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            min-height: 500px;
+            max-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.35), rgba(74, 111, 165, 0.25)),
+                        url('winter-panoramic-hero.jpg') center 40%/cover;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--snow);
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--snow);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            border: 2px solid var(--snow);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--snow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--warm-grey);
+            margin-bottom: 4rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* The Chalet Section */
+        .chalet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--snow);
+            border-left: 3px solid var(--alpine-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+
+        .feature-card p {
+            color: var(--warm-grey);
+            line-height: 1.8;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Location Section */
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .location-info {
+            padding: 2rem 0;
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--alpine-blue);
+        }
+
+        .info-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 500px;
+            background: var(--warm-grey);
+            border-radius: 4px;
+        }
+
+        /* Booking Section */
+        .booking-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            padding: 3rem 2rem;
+            background: var(--snow);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card .season {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--alpine-blue);
+            margin-bottom: 1rem;
+        }
+
+        .price-card .period {
+            font-size: 0.9rem;
+            color: var(--warm-grey);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 3rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cream);
+            background: var(--snow);
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--alpine-blue);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--alpine-blue);
+            color: var(--snow);
+            border: none;
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--deep-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 111, 165, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Weather Section */
+        .weather-widget {
+            background: linear-gradient(135deg, var(--alpine-blue), var(--deep-blue));
+            color: var(--snow);
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .weather-widget h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero {
+                height: 35vh;
+                min-height: 300px;
+                max-height: 400px;
+            }
+            
+            .hero-bg {
+                background-position: center 40%;
+                background-size: cover;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .chalet-grid,
+            .booking-grid,
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Smooth animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">TUX DIAMANT</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#chalet">The Chalet</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#booking">Availability</a></li>
+            <li><a href="#weather">Weather</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>TUX DIAMANT</h1>
+            <p>A Luxury 5-Bedroom Chalet in Tux-Lanersbach, Austrian Tyrol</p>
+            <a href="#contact" class="cta-button">INQUIRE NOW</a>
+        </div>
+    </section>
+
+    <!-- The Chalet Section -->
+    <section id="chalet">
+        <h2 class="section-title fade-in">The Chalet</h2>
+        <p class="section-subtitle fade-in">Spacious luxury accommodation in the Tyrolean Alps</p>
+        
+        <div class="chalet-grid">
+            <div class="feature-card fade-in">
+                <h3>Sophisticated Alpine Living</h3>
+                <p>Five beautifully appointed bedrooms sleeping up to 10 guests. Open-plan living spaces with vaulted wooden ceilings, designer kitchen, modern fireplaces, and floor-to-ceiling windows framing the Zillertal Alps. Four luxury bathrooms including spa-style corner tubs and rain showers.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <h3>Prime Ski Location</h3>
+                <p>Direct access to the Eggalm cable car - literally opposite the chalet. Ski-to-door convenience with dedicated boot room. Minutes from Hintertux Glacier, Austria's only year-round skiing destination. Summer brings hiking trails, tennis courts, and alpine meadows.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <h3>Luxury Amenities</h3>
+                <p>Spacious balconies on every level with mountain vistas. Private parking. High-speed WiFi. Professional-grade kitchen with wine storage. Outdoor fireplace and sun terrace. Located in Lanersbach's best-rated area with a perfect 10.0 location score.</p>
+            </div>
+        </div>
+
+        <div class="gallery fade-in">
+            <div class="gallery-item">
+                <img src="luxury-dining.jpg" alt="Elegant dining for 10 with wine cellar and mountain views">
+            </div>
+            <div class="gallery-item">
+                <img src="winter-panoramic-hero.jpg" alt="Winter wonderland - TUX DIAMANT with alpine backdrop">
+            </div>
+            <div class="gallery-item">
+                <img src="summer-exterior-flowers.jpg" alt="Traditional Tyrolean chalet with flower boxes">
+            </div>
+            <div class="gallery-item">
+                <img src="bedroom-champagne.jpg" alt="Luxury bedroom with champagne welcome">
+            </div>
+            <div class="gallery-item">
+                <img src="cozy-christmas.jpg" alt="Cozy alpine evenings by the fire">
+            </div>
+            <div class="gallery-item">
+                <img src="summer-aerial-gondola.jpg" alt="Ski-in location - gondola access">
+            </div>
+        </div>
+        
+        <div style="margin-top: 5rem;">
+            <h3 class="fade-in" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">Floor Plans</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto;">
+                <div class="fade-in">
+                    <img src="floorplan-ground.jpg" alt="Ground floor layout" style="width: 100%; border: 2px solid var(--warm-grey); padding: 1rem; background: white;">
+                </div>
+                <div class="fade-in">
+                    <img src="floorplan-first.jpg" alt="First floor layout" style="width: 100%; border: 2px solid var(--warm-grey); padding: 1rem; background: white;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" style="background: var(--snow);">
+        <h2 class="section-title fade-in">Location</h2>
+        <p class="section-subtitle fade-in">Lanersbach 391, 6293 Tux, Austria</p>
+        
+        <div class="location-content">
+            <div class="location-info fade-in">
+                <div class="info-item">
+                    <h4>Ski Access</h4>
+                    <p>Direct ski-to-door access to the Hintertux Glacier and Zillertal Alps ski areas. Multiple ski lifts within walking distance.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Local Attractions</h4>
+                    <p>Hiking trails, thermal spas, traditional Tyrolean restaurants, and stunning alpine scenery surround the property.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Transport</h4>
+                    <p>Innsbruck Airport 50km away. Free on-site parking. Airport shuttle available on request.</p>
+                </div>
+            </div>
+            
+            <div class="map-container fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2707.8!2d11.6667!3d47.0833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDA1JzAwLjAiTiAxMcKwNDAnMDAuMCJF!5e0!3m2!1sen!2sat!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <h2 class="section-title fade-in">Availability & Rates</h2>
+        <p class="section-subtitle fade-in">Book your luxury alpine escape</p>
+        
+        <div class="booking-content">
+            <div class="booking-grid">
+                <div class="price-card fade-in">
+                    <div class="season">Winter Peak</div>
+                    <div class="price">€450</div>
+                    <div class="period">per night</div>
+                </div>
+                
+                <div class="price-card fade-in">
+                    <div class="season">Summer</div>
+                    <div class="price">€280</div>
+                    <div class="period">per night</div>
+                </div>
+                
+                <div class="price-card fade-in">
+                    <div class="season">Off-Season</div>
+                    <div class="price">€200</div>
+                    <div class="period">per night</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 3rem; color: var(--warm-grey);">
+                Minimum stay 7 nights during winter season. 3-night minimum in summer and off-season. 
+                Special rates available for extended stays.
+            </p>
+        </div>
+    </section>
+
+    <!-- Weather Section -->
+    <section id="weather" style="background: var(--snow);">
+        <h2 class="section-title fade-in">Current Conditions</h2>
+        <p class="section-subtitle fade-in">Live weather and snow reports from Tux</p>
+        
+        <div class="weather-widget fade-in">
+            <h3>Hintertux Glacier</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Check current weather conditions and snow depth at the glacier</p>
+            <a href="https://www.hintertuxergletscher.at/en/weather-webcams-tux-finkenberg.html" target="_blank" class="cta-button" style="background: var(--snow); color: var(--deep-blue);">
+                VIEW LIVE CONDITIONS
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <p class="section-subtitle fade-in">Inquire about availability or ask us anything</p>
+        
+        <form class="contact-form fade-in">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date" id="checkin" name="checkin">
+            </div>
+            
+            <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date" id="checkout" name="checkout">
+            </div>
+            
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                    <option value="">Select...</option>
+                    <option value="1-2">1-2 guests</option>
+                    <option value="3-4">3-4 guests</option>
+                    <option value="5-6">5-6 guests</option>
+                    <option value="7-8">7-8 guests</option>
+                    <option value="9-10">9-10 guests</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your stay requirements..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">SEND INQUIRY</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 3rem; color: var(--warm-grey);">
+            <p><strong>Direct Contact:</strong></p>
+            <p>Email: info@tuxdiamant.com | Phone: +43 771 062050</p>
+            <p>Lanersbach 391, 6293 Tux, Austria</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TUX DIAMANT. All rights reserved.</p>
+        <p>Luxury Alpine Chalet Rental | Tux, Tyrol, Austria</p>
+    </footer>
+
+    <script>
+        // Smooth scroll animation on elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
